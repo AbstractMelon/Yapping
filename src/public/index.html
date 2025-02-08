@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CMSC Yapping Monitor</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav-bar">
+        <a href="#" class="nav-link active" onclick="showSection('home')"
+          >Home</a
+        >
+        <a href="#" class="nav-link" onclick="showSection('stats')"
+          >Statistics</a
+        >
+      </nav>
+
+      <div id="home-section" class="section homepage">
+        <h1>CMSC Yapping Monitor</h1>
+        <p>
+          Welcome to the CMSC Yapping Monitor! Keep track of your crew & staffs
+          yapping activity.
+        </p>
+
+        <!-- <div class="card-grid">
+          <div class="card">
+            <h3>Current Fleet Status</h3>
+            <p id="home-fleet-summary">Loading...</p>
+          </div>
+          <div class="card">
+            <h3>Today's Yapping</h3>
+            <p id="home-today-summary">Loading...</p>
+          </div>
+          <div class="card">
+            <h3>Peak Activity</h3>
+            <p id="home-peak-summary">Loading...</p>
+          </div>
+        </div> -->
+
+        <div class="button-container">
+          <button onclick="openYapPopup()" class="btn">Record New Yap</button>
+          <button onclick="showSection('stats')" class="btn btn-outline">
+            View Full Statistics
+          </button>
+        </div>
+      </div>
+
+      <div id="stats-section" class="section">
+        <h2>Fleet Statistics</h2>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Highest Yapping Ship</h3>
+            <div id="highest-yapping" class="stat-value">Loading...</div>
+          </div>
+          <div class="stat-card">
+            <h3>Peak Yapping Level</h3>
+            <div id="peak-yapping" class="stat-value">Loading...</div>
+          </div>
+          <div class="stat-card">
+            <h3>Total Yaps Recorded</h3>
+            <div id="total-yaps" class="stat-value">Loading...</div>
+          </div>
+          <div class="stat-card">
+            <h3>Average Fleet Yapping</h3>
+            <div id="avg-yapping" class="stat-value">Loading...</div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <h3>Timeline Analysis</h3>
+          <div class="filter-bar">
+            <button class="ship-filter active" data-ship="all">
+              All Ships
+            </button>
+            <button class="ship-filter" data-ship="Odyssey">Odyssey</button>
+            <button class="ship-filter" data-ship="Falcon">Falcon</button>
+            <button class="ship-filter" data-ship="Phoenix">Phoenix</button>
+            <button class="ship-filter" data-ship="Cassini">Cassini</button>
+            <button class="ship-filter" data-ship="Magellan">Magellan</button>
+            <button class="ship-filter" data-ship="Galileo">Galileo</button>
+          </div>
+          <canvas id="timeline-chart"></canvas>
+        </div>
+
+        <div class="chart-container">
+          <h3>Ship Comparison</h3>
+          <canvas id="comparison-chart"></canvas>
+        </div>
+
+        <div class="chart-container">
+          <h3>Staff vs Crew Analysis</h3>
+          <canvas id="staff-crew-chart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div id="yap-popup" class="popup hidden">
+      <div class="popup-content">
+        <span class="close" onclick="closeYapPopup()">&times;</span>
+        <h2>Record New Yap</h2>
+        <form id="yap-form">
+          <div class="form-group">
+            <label for="ship">Select Ship:</label>
+            <select id="ship" required>
+              <option value="">Choose a ship...</option>
+              <option value="Odyssey">Odyssey</option>
+              <option value="Falcon">Falcon</option>
+              <option value="Phoenix">Phoenix</option>
+              <option value="Cassini">Cassini</option>
+              <option value="Magellan">Magellan</option>
+              <option value="Galileo">Galileo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Staff Yapping Level:</label>
+            <div class="range-container">
+              <input type="range" id="staff-level" min="0" max="10" value="5" />
+              <span id="staff-value">5</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Crew Yapping Level:</label>
+            <div class="range-container">
+              <input type="range" id="crew-level" min="0" max="10" value="5" />
+              <span id="crew-value">5</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Submit Yap</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
