@@ -1,5 +1,17 @@
 {
-	"dependencies": {
-		"express": "^4.21.2"
-	}
+  "name": "yapping",
+  "version": "1.0.0",
+  "description": "A simple server to collect and display yapping data",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon ./src/server.js",
+    "prod": "pm2 start ./src/server.js --name yapping",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }

@@ -5,12 +5,12 @@ const path = require("path");
 const app = express();
 
 app.use(express.json());
-app.use(express.static("public"));
+app.use("/", express.static(path.join(__dirname, "public")));
 
 // Read/write JSON file functions
 const getYaps = () => {
   try {
-    const data = fs.readFileSync("yaps.json", "utf8");
+    const data = fs.readFileSync(path.join(__dirname, "yaps.json"), "utf8");
     return JSON.parse(data);
   } catch (error) {
     return { yaps: [] };
@@ -23,7 +23,10 @@ const saveYap = (yap) => {
     ...yap,
     timestamp: new Date().toISOString(),
   });
-  fs.writeFileSync("yaps.json", JSON.stringify(data, null, 2));
+  fs.writeFileSync(
+    path.join(__dirname, "yaps.json"),
+    JSON.stringify(data, null, 2)
+  );
 };
 
 // Routes
@@ -37,5 +40,5 @@ app.post("/api/yaps", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Server running on port 3000");
+  console.log("Server running on port http://localhost:3000/");
 });
